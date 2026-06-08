@@ -54,7 +54,7 @@ with st.sidebar:
     top_users = list(collection.find().sort("score", -1).limit(5))
     for i, u in enumerate(top_users, 1):
         st.write(f"**{i}. {u['name']}**")
-        st.metric("Zubaan-Factor", u.get('score', 0))
+        st.metric("Trust Rating", u.get('score', 0))
     st.markdown("---")
 
 tab1, tab2 = st.tabs(["Login", "Register"])
@@ -72,7 +72,7 @@ with tab1:
             with st.container(border=True):
                 col1, col2, col3 = st.columns([2, 1, 2])
                 col1.write(f"👤 **{u['username']}**")
-                col2.metric("Zubaan-Factor", u.get('score', 0))
+                col2.metric("Trust Rating", u.get('score', 0))
                 
                 b = u.get('breakdown', {'payment_consistency': 0, 'honesty': 0, 'quality_of_work': 0})
                 with st.expander("View Trust Breakdown"):
